@@ -1,14 +1,21 @@
 
-const fs = require('fs');
+const fs = require("fs");
 
-const readStrem = fs.createReadStream('data.txt');
-
-readStrem.on("data", (chunk)=>{
-    console.log(chunk.toString());
-    
+const readStream = fs.createReadStream("data.txt" ,{
+     highWaterMark: 20
 });
 
-readStrem.on("close", ()=>{
-    console.log("reading complete");
-    
+let chunkCount = 0;
+
+readStream.on("data", (chunk) => {
+  chunkCount++;
+  console.log(`Chunk ${chunkCount} received`);
+});
+
+readStream.on("end", () => {
+  console.log(`Total Chunks: ${chunkCount}`);
+});
+
+readStream.on("error", (err) => {
+  console.log(err.message);
 });
