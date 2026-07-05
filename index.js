@@ -1,11 +1,17 @@
-const fs = require('fs');
+const express = require('express');
+const app = express()
 
-const fileRead = fs.createReadStream('data.txt');
 
-fileRead.on("data",(chunk) =>{
-  console.log(chunk.toString());
-});
+app.get('/', (req, res) => {
+  res.send('ddsdsHeWodsdsdrld!')
+})
 
-fileRead.on("end",()=>{
-  console.log("Reading complete");
-});
+app.get('/About', (req,res) =>{
+    res.send('hi am about section')
+})
+
+app.get('/Contact', (req,res) =>{
+    res.send('hi am Contact section')
+})
+
+app.listen(5500);
