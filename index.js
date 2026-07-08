@@ -1,17 +1,22 @@
 const express = require('express');
-const app = express()
+const path = require('path')
+const app = express();
 
 
-app.get('/', (req, res) => {
-  res.send('ddsdsHeWodsdsdrld!')
-})
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
-app.get('/About', (req,res) =>{
-    res.send('hi am about section')
-})
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/Contact', (req,res) =>{
-    res.send('hi am Contact section')
-})
+app.set('view engine', 'ejs');
 
-app.listen(5500);
+// this is my routing's
+
+app.get('/', function(req, res){
+    res.render("index");
+});
+
+// this is the port number:
+
+app.listen(3050);
+
