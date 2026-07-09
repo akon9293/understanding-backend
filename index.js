@@ -15,8 +15,12 @@ app.set('view engine', 'ejs');
 app.get('/', function(req, res){
     res.render("index");
 });
+app.get('/profile/:username', function(req, res){
+    req.params.username;
+    res.send(req.params.username);
+});
 
-// this is the port number:
+// this is the port number: 
 
 app.listen(3050);
 
